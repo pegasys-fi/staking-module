@@ -13,7 +13,7 @@ import {IERC20WithPermit} from '../interfaces/IERC20WithPermit.sol';
 /**
  * @title StakedPsysV3
  * @notice StakedTokenV3 with WPSYS token as staked token
- * @author BGD Labs
+ * @author BGD Labs, modified by Pegasys
  */
 contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
   using SafeCast for uint256;
@@ -72,7 +72,7 @@ contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
     STAKED_TOKEN.approve(address(this), type(uint256).max);
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function setGHODebtToken(IGhoVariableDebtTokenTransferHook newGHODebtToken)
     external
   {
@@ -81,7 +81,7 @@ contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
     emit GHODebtTokenChanged(address(newGHODebtToken));
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function claimRewardsAndStake(address to, uint256 amount)
     external
     override
@@ -90,7 +90,7 @@ contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
     return _claimRewardsAndStakeOnBehalf(msg.sender, to, amount);
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function claimRewardsAndStakeOnBehalf(
     address from,
     address to,
@@ -99,7 +99,7 @@ contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
     return _claimRewardsAndStakeOnBehalf(from, to, amount);
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function stakeWithPermit(
     address from,
     uint256 amount,
@@ -120,12 +120,12 @@ contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
     _stake(from, from, amount);
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function getExchangeRateSnapshotsCount() external view returns (uint32) {
     return _exchangeRateSnapshotsCount;
   }
 
-  /// @inheritdoc IStakedAaveV3
+  /// @inheritdoc IStakedPsysV3
   function getExchangeRateSnapshot(uint32 index)
     external
     view

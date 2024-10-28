@@ -6,7 +6,7 @@ import {AaveGovernanceV2} from 'aave-address-book/AaveGovernanceV2.sol';
 import {AaveV2EthereumAssets} from 'aave-address-book/AaveV2Ethereum.sol';
 import {ProxyAdmin} from 'solidity-utils/contracts/transparent-proxy/ProxyAdmin.sol';
 import {TransparentUpgradeableProxy} from 'solidity-utils/contracts/transparent-proxy/TransparentUpgradeableProxy.sol';
-import {StakedAaveV3} from './StakedAaveV3.sol';
+import {StakedPsysV3} from './StakedPsysV3.sol';
 import {StakedTokenV3} from './StakedTokenV3.sol';
 import {IERC20} from '../interfaces/IERC20.sol';
 import {IInitializableAdminUpgradeabilityProxy} from '../interfaces/IInitializableAdminUpgradeabilityProxy.sol';
@@ -45,7 +45,7 @@ contract ProposalPayloadStkAave {
       address(AaveMisc.PROXY_ADMIN_ETHEREUM_LONG)
     );
     // 2. deploy newimplementation
-    StakedAaveV3 newImpl = new StakedAaveV3(
+    StakedPsysV3 newImpl = new StakedPsysV3(
       IERC20(AaveV2EthereumAssets.AAVE_UNDERLYING),
       IERC20(AaveV2EthereumAssets.AAVE_UNDERLYING),
       GenericProposal.UNSTAKE_WINDOW,
