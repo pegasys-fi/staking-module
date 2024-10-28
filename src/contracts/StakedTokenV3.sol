@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {IERC20} from '../interfaces/IERC20.sol';
 import {DistributionTypes} from '../lib/DistributionTypes.sol';
 import {SafeERC20} from '../lib/SafeERC20.sol';
-import {IAaveDistributionManager} from '../interfaces/IAaveDistributionManager.sol';
+import {IPegasysDistributionManager} from '../interfaces/IPegasysDistributionManager.sol';
 import {IERC20Metadata} from '../interfaces/IERC20Metadata.sol';
 import {IStakedTokenV2} from '../interfaces/IStakedTokenV2.sol';
 import {StakedTokenV2} from './StakedTokenV2.sol';
@@ -22,7 +22,7 @@ contract StakedTokenV3 is
   StakedTokenV2,
   IStakedTokenV3,
   RoleManager,
-  IAaveDistributionManager
+  IPegasysDistributionManager
 {
   using SafeERC20 for IERC20;
   using PercentageMath for uint256;
@@ -150,7 +150,7 @@ contract StakedTokenV3 is
     _updateExchangeRate(INITIAL_EXCHANGE_RATE);
   }
 
-  /// @inheritdoc IAaveDistributionManager
+  /// @inheritdoc IPegasysDistributionManager
   function configureAssets(
     DistributionTypes.AssetConfigInput[] memory assetsConfigInput
   ) external override {

@@ -4,11 +4,10 @@ pragma solidity ^0.8.0;
 import {DistributionTypes} from '../lib/DistributionTypes.sol';
 
 /**
- * @title AaveDistributionManager
+ * @title PegasysDistributionManager
  * @notice Accounting contract to manage multiple staking distributions
- * @author Aave
  */
-contract AaveDistributionManager {
+contract PegasysDistributionManager {
   struct AssetData {
     uint128 emissionPerSecond;
     uint128 lastUpdateTimestamp;
@@ -66,7 +65,7 @@ contract AaveDistributionManager {
 
   /**
    * @dev Updates the state of one distribution, mainly rewards index and timestamp
-   * @param underlyingAsset The address used as key in the distribution, for example sAAVE or the aTokens addresses on Aave
+   * @param underlyingAsset The address used as key in the distribution, for example sPSYS or the aTokens addresses on Pegasys
    * @param assetConfig Storage pointer to the distribution's config
    * @param totalStaked Current total of staked assets for this distribution
    * @return The new distribution index

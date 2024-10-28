@@ -925,18 +925,18 @@ abstract contract VersionedInitializable {
   uint256[50] private ______gap;
 }
 
-interface IAaveDistributionManager {
+interface IPegasysDistributionManager {
   function configureAssets(
     DistributionTypes.AssetConfigInput[] calldata assetsConfigInput
   ) external;
 }
 
 /**
- * @title AaveDistributionManager
+ * @title PegasysDistributionManager
  * @notice Accounting contract to manage multiple staking distributions
  * @author Aave
  **/
-contract AaveDistributionManager is IAaveDistributionManager {
+contract PegasysDistributionManager is IPegasysDistributionManager {
   using SafeMath for uint256;
 
   struct AssetData {
@@ -1552,7 +1552,7 @@ contract StakedTokenV2Rev4 is
   IStakedAave,
   GovernancePowerWithSnapshot,
   VersionedInitializable,
-  AaveDistributionManager
+  PegasysDistributionManager
 {
   using SafeMath for uint256;
   using SafeERC20 for IERC20;
@@ -1632,7 +1632,7 @@ contract StakedTokenV2Rev4 is
   )
     public
     ERC20(name, symbol)
-    AaveDistributionManager(emissionManager, distributionDuration)
+    PegasysDistributionManager(emissionManager, distributionDuration)
   {
     STAKED_TOKEN = stakedToken;
     REWARD_TOKEN = rewardToken;

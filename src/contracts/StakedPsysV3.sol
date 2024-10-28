@@ -7,15 +7,15 @@ import {GovernancePowerDelegationERC20} from '../lib/GovernancePowerDelegationER
 import {StakedTokenV3} from './StakedTokenV3.sol';
 import {IGhoVariableDebtTokenTransferHook} from '../interfaces/IGhoVariableDebtTokenTransferHook.sol';
 import {SafeCast} from '../lib/SafeCast.sol';
-import {IStakedAaveV3} from '../interfaces/IStakedAaveV3.sol';
+import {IStakedPsysV3} from '../interfaces/IStakedPsysV3.sol';
 import {IERC20WithPermit} from '../interfaces/IERC20WithPermit.sol';
 
 /**
- * @title StakedAaveV3
- * @notice StakedTokenV3 with AAVE token as staked token
+ * @title StakedPsysV3
+ * @notice StakedTokenV3 with WPSYS token as staked token
  * @author BGD Labs
  */
-contract StakedAaveV3 is StakedTokenV3, IStakedAaveV3 {
+contract StakedPsysV3 is StakedTokenV3, IStakedPsysV3 {
   using SafeCast for uint256;
 
   uint32 internal _exchangeRateSnapshotsCount;
