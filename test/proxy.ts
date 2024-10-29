@@ -52,7 +52,7 @@ describe("StakedPSYSV3 - Proxy", function () {
             const balanceBefore = await stakedTokenAsUser.balanceOf(userAddress);
 
             // Deploy new implementation
-            const StakedPSYSV3Factory = await ethers.getContractFactory("StakedPSYSV3");
+            const StakedPSYSV3Factory = await ethers.getContractFactory("contracts/StakedPSYSV3.sol:StakedPSYSV3");
             const newImpl = await StakedPSYSV3Factory.deploy(
                 await baseTest.psysToken.getAddress(),
                 await baseTest.psysToken.getAddress(),

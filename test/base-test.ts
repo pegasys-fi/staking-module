@@ -46,7 +46,7 @@ export class BaseTest {
         );
 
         // Deploy implementation
-        const StakedPSYSV3Factory = await ethers.getContractFactory("StakedPSYSV3");
+        const StakedPSYSV3Factory = await ethers.getContractFactory("contracts/StakedPSYSV3.sol:StakedPSYSV3");
         this.stakedTokenImpl = await StakedPSYSV3Factory.deploy(
             psysAddress,
             psysAddress,
@@ -58,7 +58,7 @@ export class BaseTest {
         await this.stakedTokenImpl.waitForDeployment();
 
         // Deploy and initialize proxy
-        const ProxyFactory = await ethers.getContractFactory("InitializableAdminUpgradeabilityProxy");
+        const ProxyFactory = await ethers.getContractFactory("contracts/lib/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy");
         this.proxy = await ProxyFactory.deploy();
         await this.proxy.waitForDeployment();
 
@@ -78,7 +78,7 @@ export class BaseTest {
 
         // Get the proxied StakedPSYSV3 contract
         this.stakedToken = await ethers.getContractAt(
-            "StakedPSYSV3",
+            "contracts/StakedPSYSV3.sol:StakedPSYSV3",
             await this.proxy.getAddress(),
             this.owner
         );

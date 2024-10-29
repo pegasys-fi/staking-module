@@ -3,12 +3,12 @@
 import { ethers, network, run } from 'hardhat';
 
 async function main() {
-    // Define constants for addresses (replace with your actual addresses)
-    const governance = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';        // Replace with your governance address
-    const slashingAdmin = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';                  // Replace with your owner address
-    const emissionManagerAddress = '0x8BffC896D42F07776561A5814D6E4240950d6D3a'; // Replace with your emission manager address
-    const rewardsVaultAddress = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';    // Replace with your rewards vault address
-    const psysTokenAddress = '0x48023b16c3e81AA7F6eFFbdEB35Bb83f4f31a8fd';               // Replace with your PSYS token address
+
+    const governance = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
+    const slashingAdmin = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
+    const emissionManagerAddress = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
+    const rewardsVaultAddress = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
+    const psysTokenAddress = '0x48023b16c3e81AA7F6eFFbdEB35Bb83f4f31a8fd';
     const cooldownPauseAdmin = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
     const claimHelper = '0x8BffC896D42F07776561A5814D6E4240950d6D3a';
 
@@ -21,7 +21,7 @@ async function main() {
 
     // Deploy StakedPSYSV3 implementation
     console.log('\nDeploying StakedPSYSV3 implementation...');
-    const StakedPSYSV3Factory = await ethers.getContractFactory('StakedPSYSV3');
+    const StakedPSYSV3Factory = await ethers.getContractFactory('contracts/StakedPSYSV3.sol:StakedPSYSV3');
     const stakedTokenImpl = await StakedPSYSV3Factory.deploy(
         psysTokenAddress,      // stakedToken
         psysTokenAddress,      // rewardToken
@@ -29,7 +29,6 @@ async function main() {
         rewardsVaultAddress,    // rewardsVault
         emissionManagerAddress, // emissionManager
         365 * 24 * 60 * 60,      // distributionDuration: 1 year
-        { gasLimit: 30000000 } // or another appropriate limit
     );
     await stakedTokenImpl.waitForDeployment();
     const stakedTokenImplAddress = await stakedTokenImpl.getAddress();
@@ -62,7 +61,7 @@ async function main() {
 
     // Deploy the proxy contract
     console.log('\nDeploying InitializableAdminUpgradeabilityProxy...');
-    const ProxyFactory = await ethers.getContractFactory('InitializableAdminUpgradeabilityProxy');
+    const ProxyFactory = await ethers.getContractFactory('contracts/lib/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy');
     const proxy = await ProxyFactory.deploy();
     await proxy.waitForDeployment();
     const proxyAddress = await proxy.getAddress();
@@ -108,24 +107,6 @@ async function main() {
 
     console.log('StakedPSYSV3 proxy contract at:', proxyAddress);
     console.log('StakedPSYSV3 implementation deployed to:', stakedTokenImplAddress);
-
-    // Verify StakedPSYSV3 proxy contract (Note: this verifies the proxy itself)
-    if (network.name === 'rollux') {
-        console.log('Waiting for Blockscout to index the contracts...');
-        await new Promise((resolve) => setTimeout(resolve, 10000)); // Wait for 10 seconds
-
-        try {
-            console.log('Verifying StakedPSYSV3 proxy contract...');
-            await run('verify:verify', {
-                address: proxyAddress,
-                constructorArguments: [],
-                contract: 'contracts/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy',
-            });
-            console.log('StakedPSYSV3 proxy verified');
-        } catch (error: any) {
-            console.error('Error verifying StakedPSYSV3 proxy contract:', error.message);
-        }
-    }
 
     console.log('\nDeployment script completed');
 }
