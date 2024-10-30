@@ -2,18 +2,18 @@ import { ethers } from 'hardhat';
 
 // Configuration parameters
 const PARAMS = {
-    GOVERNANCE: '0xaf399890A1b2affD25309D6b5c5Bcf8e917bD3BB',
-    SLASHING_ADMIN: '0xaf399890A1b2affD25309D6b5c5Bcf8e917bD3BB',
-    COOLDOWN_PAUSE_ADMIN: '0xaf399890A1b2affD25309D6b5c5Bcf8e917bD3BB',
-    CLAIM_HELPER: '0xaf399890A1b2affD25309D6b5c5Bcf8e917bD3BB',
+    GOVERNANCE: '0x6055e657a2aA5319BEb3B9b4950E89D3aE30937A',
+    SLASHING_ADMIN: '0x6055e657a2aA5319BEb3B9b4950E89D3aE30937A',
+    COOLDOWN_PAUSE_ADMIN: '0x6055e657a2aA5319BEb3B9b4950E89D3aE30937A',
+    CLAIM_HELPER: '0x6055e657a2aA5319BEb3B9b4950E89D3aE30937A',
     MAX_SLASHABLE_PERCENTAGE: 2000,         // 20%
     COOLDOWN_SECONDS: 10 * 24 * 60 * 60     // 10 days
 };
 
 // Add your deployment addresses here
 const DEPLOYMENT_ADDRESSES = {
-    IMPLEMENTATION: '0x152708C13b429f5facFd5c980bF02A4422096ea8', // Add implementation address
-    PROXY: '0x3C72568C296902Dc75c6BEfa113eF8dBfb015347'          // Add proxy address
+    IMPLEMENTATION: '0x37d6fadf27a710578D1cdE94126E0d39e29Dc7A7', // Add implementation address
+    PROXY: '0xd05D3fD74a947bf6814dDdD141138Af92Cb07636'          // Add proxy address
 };
 
 async function main() {
@@ -31,7 +31,6 @@ async function main() {
         const Proxy = await ethers.getContractFactory('contracts/lib/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy');
 
         // Get contract instances
-        const implementation = await StakedPSYSV3.attach(DEPLOYMENT_ADDRESSES.IMPLEMENTATION);
         const proxy = await Proxy.attach(DEPLOYMENT_ADDRESSES.PROXY);
 
         // Prepare initialization data
