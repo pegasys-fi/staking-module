@@ -1,6 +1,6 @@
 {
   "name": "@pollum-io/pegasys-stake",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Pegasys Stake",
   "files": [
     "contracts",
@@ -8,7 +8,11 @@
   ],
   "scripts": {
     "lint": "prettier ./",
-    "lint:fix": "npm run lint -- --write"
+    "lint:fix": "npm run lint -- --write",
+    "prepublishOnly": "npm run compile",
+    "compile": "SKIP_LOAD=true hardhat compile",
+    "compile:force": "npm run compile -- --force",
+    "compile:force:quiet": "npm run compile:force -- --quiet"
   },
   "keywords": [],
   "author": "BGD labs",
