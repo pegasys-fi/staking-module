@@ -21,3 +21,7 @@ broadcast/
 .certora*
 .last_confs/
 resource_errors*
+
+# 
+artifacts/
+typechain-types/
