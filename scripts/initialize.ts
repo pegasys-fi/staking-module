@@ -12,8 +12,8 @@ const PARAMS = {
 
 // Add your deployment addresses here
 const DEPLOYMENT_ADDRESSES = {
-    IMPLEMENTATION: '0xf7588bB02065A998aC6f2f8b82E539Bb42e43b0a', // Add implementation address
-    PROXY: '0xae48aEF49132EE4BCFcAb1a84E60f03210c4a2cE'          // Add proxy address
+    IMPLEMENTATION: '0x56a778fa84E18c0320b8b3665F51e36212807bfE', // Add implementation address
+    PROXY: '0xDaB687e5A425a9212bcA6b1153C39bfd0C7E87A3'          // Add proxy address
 };
 
 async function main() {

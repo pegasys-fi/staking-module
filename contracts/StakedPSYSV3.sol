@@ -257,4 +257,19 @@ contract StakedPSYSV3 is StakedTokenV3, IStakedPSYSV3 {
       return snapshots[lower].value;
     }
   }
+
+      /**
+     * @dev Returns the name of the token.
+     */
+    function name() public pure override returns (string memory) {
+        return 'Staked Pegasys';
+    }
+
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+    function symbol() public pure override returns (string memory) {
+        return  'stkPSYS';
+    }
 }
