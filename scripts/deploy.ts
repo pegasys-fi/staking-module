@@ -2,11 +2,11 @@ import { ethers, network, run } from 'hardhat';
 
 // Configuration parameters
 const PARAMS = {
-    PSYS_TOKEN_ADDRESS: '0x1c5ed8Ff728574faf9a8Cba1E63DC9eBD14Aa9dd',
+    PSYS_TOKEN_ADDRESS: '0xd7e763C68d117d206fabA8df2383910c614cB93B',
     REWARDS_VAULT_ADDRESS: '0xa52509236718f04c2595321e4913eA2605343d31',
     EMISSION_MANAGER_ADDRESS: '0x10C09f2598E3d1DBe1416412c9b8AAcB7AB8b10d',
-    UNSTAKE_WINDOW: 7 * 24 * 60 * 60,       // 7 days
-    DISTRIBUTION_DURATION: 90 * 24 * 60 * 60 // 90 days
+    UNSTAKE_WINDOW: 60 * 60,       // 1 hour
+    DISTRIBUTION_DURATION: 0 //90 * 24 * 60 * 60 // 90 days
 };
 
 async function main() {
@@ -73,7 +73,7 @@ async function verifyContracts(implAddress: string, proxyAddress: string) {
         await run('verify:verify', {
             address: proxyAddress,
             constructorArguments: [],
-            contract: 'contracts/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy',
+            contract: 'contracts/lib/InitializableAdminUpgradeabilityProxy.sol:InitializableAdminUpgradeabilityProxy',
         });
         console.log('Proxy verified');
     } catch (error: any) {

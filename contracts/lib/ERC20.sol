@@ -38,8 +38,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
     uint256 internal _totalSupply;
 
-    string private _name;
-    string private _symbol;
+    string private _name = 'Staked Pegasys';
+    string private _symbol = 'stkPSYS';
     uint8 private _decimals; // @deprecated
     /**
      * @dev Sets the values for {name} and {symbol}.
