@@ -161,7 +161,7 @@ contract StakedTokenDataProvider is IStakedTokenDataProvider {
         data.rewardsToClaim = stkToken.getTotalRewardsBalance(user);
         
         // V3 cooldown structure
-        (data.cooldownTimestamp, data.cooldownAmount) = stkToken.stakersCooldowns(user);
+        (data.userCooldownTimestamp, data.userCooldownAmount) = stkToken.stakersCooldowns(user);
     }
 
     function _calculateApy(

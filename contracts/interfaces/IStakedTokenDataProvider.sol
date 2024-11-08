@@ -21,8 +21,8 @@ interface IStakedTokenDataProvider {
         uint256 underlyingTokenUserBalance;
         uint256 stakedTokenRedeemableAmount;
         uint256 rewardsToClaim;
-        uint40 cooldownTimestamp;
-        uint216 cooldownAmount;
+        uint40 userCooldownTimestamp;
+        uint216 userCooldownAmount;
     }
 
     function ETH_USD_PRICE_FEED() external view returns (address);
