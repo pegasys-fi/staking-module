@@ -1,5 +1,7 @@
 # build and cache
 cache/
+cache-zk/
+deployments-zk/
 out/
 
 # general
@@ -24,4 +26,5 @@ resource_errors*
 
 # 
 artifacts/
+artifacts-zk/
 typechain-types/

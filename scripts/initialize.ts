@@ -7,7 +7,7 @@ const PARAMS = {
     COOLDOWN_PAUSE_ADMIN: '0x5B024AfAaaed10bA2788fdDCd7b72Af60A854D2F',
     CLAIM_HELPER: '0x5B024AfAaaed10bA2788fdDCd7b72Af60A854D2F',
     MAX_SLASHABLE_PERCENTAGE: 2000,         // 20%
-    COOLDOWN_SECONDS: 10 * 24 * 60 * 60     // 10 days
+    COOLDOWN_SECONDS: 500 //10 * 24 * 60 * 60     // 10 days
 };
 
 // Add your deployment addresses here
